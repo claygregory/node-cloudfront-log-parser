@@ -15,7 +15,7 @@ npm install --save cloudfront-log-parser
 Given a string or Buffer of a log file, the `parse` function can be called directly, returning an array of parsed log entries.
 ```javascript
 const CloudFrontParser = require('cloudfront-log-parser');
-const accesses = CloudFrontParser.parse(<Buffer or string of log file>, { format: 'web' });
+const accesses = CloudFrontParser.parse('<contents of log file>', { format: 'web' });
 //accesses = array of objects, see below for format
 ```
 
@@ -23,7 +23,7 @@ const accesses = CloudFrontParser.parse(<Buffer or string of log file>, { format
 If `parse` is provided with a callback function, it will be called with an array of parsed entries as the result.
 ```javascript
 const CloudFrontParser = require('cloudfront-log-parser');
-CloudFrontParser.parse(<Buffer or string of log file>, { format: 'web' }, function (err, accesses) {
+CloudFrontParser.parse('<contents of log file>', { format: 'web' }, function (err, accesses) {
   //accesses = array of objects, see below for format
 });
 ```
