@@ -1,0 +1,15 @@
+{
+  "name": "cloudfront-log-parser",
+  "version": "0.0.1",
+  "description": "Parser for CloudFront access logs",
+  "author": "Clay Gregory <clay@claygregory.com> (https://claygregory.com/)",
+  "repository": "claygregory/node-cloudfront-log-parser",
+  "homepage": "https://github.com/claygregory/node-cloudfront-log-parser",
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "eslint": "^3.13.1"
+  }
+}
