@@ -27,7 +27,7 @@ const option_defaults = {
 };
 
 const decode_field = val => {
-  return decodeURIComponent(
+  return unescape(
     val.replace(/%2522/g, '"')
       .replace(/%255C/g, '\\')
       .replace(/%2520/g, ' ')
