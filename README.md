@@ -3,7 +3,7 @@
 
 This is a log parser for Cloudfront Web Distribution and RTMP Distribution access logs. It can be used for directly or with the Node.js Stream API.
 
-# Installation
+## Installation
 
 ```bash
 npm install --save cloudfront-log-parser
@@ -110,6 +110,6 @@ const options = {
   'c-user-agent': 'LNX 10,0,32,18' }
 ```
 
-##License
+## License
 
 See the included [LICENSE](LICENSE.md) for rights and limitations under the terms of the MIT license.
