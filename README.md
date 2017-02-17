@@ -1,7 +1,7 @@
 
 # CloudFront Access Log Parser
 
-This is a log parser for Cloudfront Web Distribution and RTMP Distribution access logs. It can be used for directly or with the Node.js Stream API.
+This is a log parser for Cloudfront Web Distribution and RTMP Distribution access logs. It can be called directly or with the Node.js Stream API.
 
 [![Build Status](https://travis-ci.org/claygregory/node-cloudfront-log-parser.svg?branch=master)](https://travis-ci.org/claygregory/node-cloudfront-log-parser)
 [![Coverage Status](https://coveralls.io/repos/github/claygregory/node-cloudfront-log-parser/badge.svg?branch=master)](https://coveralls.io/github/claygregory/node-cloudfront-log-parser?branch=master)
@@ -41,9 +41,9 @@ const fs = require('fs');
 const zlib = require('zlib');
 
 const parser = new CloudFrontParser({ format: 'web' });
-parser.on('readable', function(){
+parser.on('readable', function () {
   let access;
-  while(access = parser.read()){
+  while (access = parser.read()) {
     //access = parsed entry object
   }
 });
@@ -110,7 +110,11 @@ const options = {
   'cs-uri-query': 'key=value',
   'c-referrer': 'http://player.example.com/player.swf',
   'x-page-url': 'http://www.example.com/video',
-  'c-user-agent': 'LNX 10,0,32,18' }
+  'c-user-agent': 'LNX 10,0,32,18',
+  'x-sname': '-',
+  'x-sname-query': '-',
+  'x-file-ext': '-',
+  'x-sid': '-' }
 ```
 
 ## License
