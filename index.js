@@ -17,7 +17,8 @@ const formats = {
   'rtmp_v1.0': [
     'date', 'time', 'x-edge-location', 'c-ip', 'x-event',
     'sc-bytes', 'x-cf-status', 'x-cf-client-id', 'cs-uri-stem',
-    'cs-uri-query', 'c-referrer', 'x-page-url', 'c-user-agent'
+    'cs-uri-query', 'c-referrer', 'x-page-url', 'c-user-agent',
+    'x-sname', 'x-sname-query', 'x-file-ext', 'x-sid'
   ]
 };
 
