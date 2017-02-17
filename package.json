@@ -1,6 +1,6 @@
 {
   "name": "cloudfront-log-parser",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Parser for CloudFront access logs",
   "author": "Clay Gregory <clay@claygregory.com> (https://claygregory.com/)",
   "repository": "claygregory/node-cloudfront-log-parser",
