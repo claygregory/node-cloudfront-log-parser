@@ -4,6 +4,7 @@
 This is a log parser for Cloudfront Web Distribution and RTMP Distribution access logs. It can be used for directly or with the Node.js Stream API.
 
 [![Build Status](https://travis-ci.org/claygregory/node-cloudfront-log-parser.svg?branch=master)](https://travis-ci.org/claygregory/node-cloudfront-log-parser)
+[![Coverage Status](https://coveralls.io/repos/github/claygregory/node-cloudfront-log-parser/badge.svg?branch=master)](https://coveralls.io/github/claygregory/node-cloudfront-log-parser?branch=master)
 
 ## Installation
 
