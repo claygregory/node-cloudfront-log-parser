@@ -27,7 +27,7 @@ describe('stream_transform', function () {
       done();
     });
 
-    fs.createReadStream(path.join(__dirname, './fixtures/web.txt'))
+    fs.createReadStream(path.join(__dirname, './fixtures/web-1-0.txt'))
       .pipe(parser);
   });
 

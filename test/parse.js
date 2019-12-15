@@ -8,13 +8,18 @@ const CloudFrontParser = require('../');
 
 /* eslint-env node, mocha */
 
-const web_example = fs.readFileSync(path.join(__dirname, './fixtures/web.txt'), 'utf-8');
-const rtmp_example = fs.readFileSync(path.join(__dirname, './fixtures/rtmp.txt'), 'utf-8');
+const web_example = fs.readFileSync(path.join(__dirname, './fixtures/web-1-0.txt'), 'utf-8');
+const web_example1 = fs.readFileSync(path.join(__dirname, './fixtures/web-1-0-2019-12.txt'), 'utf-8');
+const rtmp_example = fs.readFileSync(path.join(__dirname, './fixtures/rtmp-1-0.txt'), 'utf-8');
 
 describe('parse', function () {
 
   it('should parse web distribution v1.0 logs without error', function () {
     CloudFrontParser.parse(web_example, { format: 'web' });
+  });
+
+  it('should parse web distribution v1.0 (with additional fields from 2019-12) logs without error', function () {
+    CloudFrontParser.parse(web_example1, { format: 'web' });
   });
 
   it('should parse RTMP distribution v1.0 logs without error', function () {
@@ -51,6 +56,14 @@ describe('parse', function () {
     assert.equal('RefreshHit', result[0]['x-edge-response-result-type']);
     assert.equal('LAX1', result[1]['x-edge-location']);
     assert.equal('/soundtrack/happy.mp3', result[1]['cs-uri-stem']);
+  });
+
+  it('should map fields added to web 1.0 format in 2019-12 into correct result fields', function () {
+    const result = CloudFrontParser.parse(web_example1, { format: 'web' });
+
+    assert.equal('Hit', result[0]['x-edge-detailed-result-type']);
+    assert.equal('text/html', result[0]['sc-content-type']);
+    assert.equal('78', result[0]['sc-content-len']);
   });
 
   it('should map each rtmp log field into correct result field', function () {

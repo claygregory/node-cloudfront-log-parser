@@ -11,7 +11,10 @@ const formats = {
     'x-edge-result-type', 'x-edge-request-id', 'x-host-header',
     'cs-protocol', 'cs-bytes', 'time-taken', 'x-forwarded-for',
     'ssl-protocol', 'ssl-cipher', 'x-edge-response-result-type',
-    'cs-protocol-version'
+    'cs-protocol-version', 'fle-status', 'fle-encrypted-fields',
+    'c-port', 'time-to-first-byte', 'x-edge-detailed-result-type',
+    'sc-content-type', 'sc-content-len', 'sc-range-start',
+    'sc-range-end'
   ],
 
   'rtmp_v1.0': [
