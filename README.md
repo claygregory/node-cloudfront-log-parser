@@ -55,11 +55,11 @@ fs.createReadStream('./somelogfile.gz')
 
 ### Options
 
-Only two configuration options are currently in effect: format and version. The parser defaults to `web` to handle the web distribution file format. If logs are from an RTMP distribution, this value should be set to `rtmp`. Currently all CloudFront logs are on version 1.0; should future versions appear, the `version` option will serve as an override.
+Only two configuration options are currently in effect: format and version. The parser defaults to `web` to handle the web distribution file format. If logs are streaming from CloudFront to Kinesis the format should be set to `kinesis` as the column headers and order changes. If logs are from an RTMP distribution, this value should be set to `rtmp`. Currently all CloudFront logs are on version 1.0; should future versions appear, the `version` option will serve as an override.
 
 ```javascript
 const options = {
-  format: 'web|rtmp',
+  format: 'web|rtmp|kinesis',
   version: '1.0'
 };
 ```
@@ -93,6 +93,51 @@ const options = {
   'ssl-cipher': 'ECDHE-RSA-AES128-GCM-SHA256',
   'x-edge-response-result-type': 'Hit',
   'cs-protocol-version': 'HTTP/1.1' }
+```
+
+
+### CloudFront to Kinesis Distribution Format
+```javascript
+{ 'timestamp': '1607374321.541',
+  'c-ip': '127.0.0.1',
+  'time-to-first-byte': '0.042',
+  'sc-status': '200',
+  'sc-bytes': '485',
+  'cs-method': 'GET',
+  'cs-protocol': 'http',
+  'cs-host': 'test.cloudfront.net',
+  'cs-uri-stem': '/i?hello=1',
+  'cs-bytes': '745',
+  'x-edge-location': 'EWR52-C4',
+  'x-edge-request-id': '6PfZe0cc_AjXUjFuGnL9pGOmFdUx8xR8ZU8nr44JYJWi-DaeJjcxkw==',
+  'x-host-header': 'test.cloudfront.net',
+  'time-taken': '0.042',
+  'cs-protocol-version': 'HTTP/1.1',
+  'c-ip-version': 'IPv4',
+  'cs-user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:83.0) Gecko/20100101 Firefox/83.0',
+  'cs-referer': 'http://localhost:5000/page-2',
+  'cs-cookie': '-',
+  'query-params': 'hello=1607374321563',
+  'x-edge-response-result-type': 'Miss',
+  'x-forwarded-for': '-',
+  'ssl-protocol': '-',
+  'ssl-cipher': '-',
+  'x-edge-result-type': 'Miss',
+  'fle-encrypted-fields': '-',
+  'fle-status': '-',
+  'sc-content-type': 'image/gif',
+  'sc-content-len': '35',
+  'sc-range-start': '-',
+  'sc-range-end': '-',
+  'c-port': '49323',
+  'x-edge-detailed-result-type': 'Miss',
+  'c-country': 'US',
+  'cs-accept-encoding': 'gzip, deflate',
+  'cs-accept': 'image/webp,*/*',
+  'cache-behavior-path-pattern': '*',
+  'cs-headers': 'Host:test.cloudfront.net\n...',
+  'cs-headers-count': '8'
+}
 ```
 
 ### RTMP Distribution Format
