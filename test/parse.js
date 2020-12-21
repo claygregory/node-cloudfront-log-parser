@@ -11,6 +11,7 @@ const CloudFrontParser = require('../');
 const web_example = fs.readFileSync(path.join(__dirname, './fixtures/web-1-0.txt'), 'utf-8');
 const web_example1 = fs.readFileSync(path.join(__dirname, './fixtures/web-1-0-2019-12.txt'), 'utf-8');
 const rtmp_example = fs.readFileSync(path.join(__dirname, './fixtures/rtmp-1-0.txt'), 'utf-8');
+const kinesis_example = fs.readFileSync(path.join(__dirname, './fixtures/kinesis-1-0.txt'), 'utf-8');
 
 describe('parse', function () {
 
@@ -26,6 +27,11 @@ describe('parse', function () {
     CloudFrontParser.parse(rtmp_example, { format: 'rtmp' });
   });
 
+  it('should parse Kinesis to Cloudfront v1.0 logs without error', function () {
+    CloudFrontParser.parse(kinesis_example, { format: 'kinesis' });
+  });
+
+
   it('should create a single object out of each line of web log, ignoring comments', function () {
     const result = CloudFrontParser.parse(web_example, { format: 'web' });
     assert.equal(2, result.length);
@@ -34,6 +40,12 @@ describe('parse', function () {
   it('should create a single object out of each line of rtmp log, ignoring comments', function () {
     const result = CloudFrontParser.parse(rtmp_example, { format: 'rtmp' });
     assert.equal(6, result.length);
+  });
+
+
+  it('should create a single object out of each line of kinesis log, ignoring comments', function () {
+    const result = CloudFrontParser.parse(kinesis_example, { format: 'kinesis' });
+    assert.equal(1, result.length);
   });
 
   it('should default to web if format unspecified', function () {
@@ -76,6 +88,19 @@ describe('parse', function () {
     assert.equal('2', result[4]['x-sid']);
     assert.equal('disconnect', result[5]['x-event']);
   });
+
+
+  it('should map each kinesis log field into correct result field', function () {
+    const result = CloudFrontParser.parse(kinesis_example, { format: 'kinesis' });
+
+    assert.equal('1607374321.541', result[0]['timestamp']);
+    assert.equal('127.0.0.1', result[0]['c-ip']);
+    assert.equal('0.042', result[0]['time-to-first-byte']);
+    assert.equal('200', result[0]['sc-status']);
+    assert.equal('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:83.0) Gecko/20100101 Firefox/83.0', result[0]['cs-user-agent']);
+  });
+
+
 
   it('should correctly decode percent-encoded fields', function () {
     const result = CloudFrontParser.parse(web_example, { format: 'web' });
